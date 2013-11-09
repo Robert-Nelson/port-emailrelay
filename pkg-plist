@@ -1,6 +1,4 @@
-@unexec if cmp -s %D/etc/emailrelay.conf.template %D/etc/emailrelay.conf; then  rm -f %D/etc/emailrelay.conf; fi
 etc/emailrelay.conf.template
-@exec if [ ! -f %D/etc/emailrelay.conf ] ; then cp -p %D/%F %B/%D/etc/emailrelay.conf
 libexec/emailrelay/examples/emailrelay-process.sh
 libexec/emailrelay/examples/emailrelay-notify.sh
 libexec/emailrelay/examples/emailrelay-deliver.sh
@@ -13,20 +11,48 @@ libexec/emailrelay/emailrelay-filter-copy
 sbin/emailrelay
 sbin/emailrelay-submit
 sbin/emailrelay-passwd
-share/doc/emailrelay/COPYING
-share/doc/emailrelay/AUTHORS
-share/doc/emailrelay/INSTALL
-share/doc/emailrelay/NEWS
-share/doc/emailrelay/README
-share/doc/emailrelay/README.windows
-share/doc/emailrelay/README.mac
-share/doc/emailrelay/README.embedded
-share/doc/emailrelay/ChangeLog
-share/man/man1/emailrelay.1
-share/man/man1/emailrelay-filter-copy.1
-share/man/man1/emailrelay-passwd.1
-share/man/man1/emailrelay-poke.1
-share/man/man1/emailrelay-submit.1
+%%GUI%%share/emailrelay/emailrelay-icon.png
+%%DOCSDIR%%/COPYING
+%%DOCSDIR%%/AUTHORS
+%%DOCSDIR%%/INSTALL
+%%DOCSDIR%%/NEWS
+%%DOCSDIR%%/README
+%%DOCSDIR%%/README.windows
+%%DOCSDIR%%/README.mac
+%%DOCSDIR%%/README.embedded
+%%DOCSDIR%%/README.ossw
+%%DOCSDIR%%/ChangeLog
+%%PORTDOCS%%%%DOCSDIR%%/developer.txt
+%%PORTDOCS%%%%DOCSDIR%%/reference.txt
+%%PORTDOCS%%%%DOCSDIR%%/userguide.txt
+%%PORTDOCS%%%%DOCSDIR%%/windows.txt
+%%PORTDOCS%%%%DOCSDIR%%/readme.html
+%%PORTDOCS%%%%DOCSDIR%%/developer.html
+%%PORTDOCS%%%%DOCSDIR%%/reference.html
+%%PORTDOCS%%%%DOCSDIR%%/userguide.html
+%%PORTDOCS%%%%DOCSDIR%%/windows.html
+%%PORTDOCS%%%%DOCSDIR%%/changelog.html
+%%PORTDOCS%%%%DOCSDIR%%/index.html
+%%PORTDOCS%%%%DOCSDIR%%/emailrelay-man.html
+%%PORTDOCS%%%%DOCSDIR%%/emailrelay.css
+%%PORTDOCS%%%%DOCSDIR%%/emailrelay-doxygen.css
+%%PORTDOCS%%%%DOCSDIR%%/gsmtp-classes.png
+%%PORTDOCS%%%%DOCSDIR%%/gnet-classes.png
+%%PORTDOCS%%%%DOCSDIR%%/sequence-3.png
+%%PORTDOCS%%%%DOCSDIR%%/gnet-client.png
+%%PORTDOCS%%%%DOCSDIR%%/gsmtp-serverprotocol.png
+%%PORTDOCS%%%%DOCSDIR%%/auth.png
+%%PORTDOCS%%%%DOCSDIR%%/valid-html401.png
+%%PORTDOCS%%%%DOCSDIR%%/diagram-1.png
+%%PORTDOCS%%%%DOCSDIR%%/diagram-2.png
+%%PORTDOCS%%%%DOCSDIR%%/emailrelay.docbook
+%%DOXYGEN%%%%DOCSDIR%%/doxygen/emailrelay-doxygen.css
+%%DOXYGEN%%%%DOCSDIR%%/doxygen/index.html
+man/man1/emailrelay.1.gz
+man/man1/emailrelay-filter-copy.1.gz
+man/man1/emailrelay-passwd.1.gz
+man/man1/emailrelay-poke.1.gz
+man/man1/emailrelay-submit.1.gz
 @dirrm libexec/emailrelay
 @dirrm share/doc/emailrelay
 @dirrm share/emailrelay
