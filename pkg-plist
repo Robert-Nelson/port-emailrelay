@@ -1,0 +1,34 @@
+@unexec if cmp -s %D/etc/emailrelay.conf.template %D/etc/emailrelay.conf; then  rm -f %D/etc/emailrelay.conf; fi
+etc/emailrelay.conf.template
+@exec if [ ! -f %D/etc/emailrelay.conf ] ; then cp -p %D/%F %B/%D/etc/emailrelay.conf
+libexec/emailrelay/examples/emailrelay-process.sh
+libexec/emailrelay/examples/emailrelay-notify.sh
+libexec/emailrelay/examples/emailrelay-deliver.sh
+libexec/emailrelay/examples/emailrelay-resubmit.sh
+libexec/emailrelay/examples/emailrelay-submit.sh
+libexec/emailrelay/examples/emailrelay-multicast.sh
+libexec/emailrelay/init/emailrelay
+libexec/emailrelay/emailrelay-poke
+libexec/emailrelay/emailrelay-filter-copy
+sbin/emailrelay
+sbin/emailrelay-submit
+sbin/emailrelay-passwd
+share/doc/emailrelay/COPYING
+share/doc/emailrelay/AUTHORS
+share/doc/emailrelay/INSTALL
+share/doc/emailrelay/NEWS
+share/doc/emailrelay/README
+share/doc/emailrelay/README.windows
+share/doc/emailrelay/README.mac
+share/doc/emailrelay/README.embedded
+share/doc/emailrelay/ChangeLog
+share/man/man1/emailrelay.1
+share/man/man1/emailrelay-filter-copy.1
+share/man/man1/emailrelay-passwd.1
+share/man/man1/emailrelay-poke.1
+share/man/man1/emailrelay-submit.1
+@dirrm libexec/emailrelay
+@dirrm share/doc/emailrelay
+@dirrm share/emailrelay
+@exec mkdir -p var/spool/emailrelay
+@dirrm var/spool/emailrelay
