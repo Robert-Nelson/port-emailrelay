@@ -1,0 +1,21 @@
+diff --git a/src/gui/Makefile.am b/src/gui/Makefile.am
+index 9c3c444..327e834 100644
+--- src/gui/Makefile.am
++++ src/gui/Makefile.am
+@@ -69,13 +69,13 @@ MOC_OBJECTS=\
+ 	moc_pages.o
+ 
+ moc_gdialog.cpp: $(srcdir)/gdialog.h $(mock)
+-	$(MOC) $< -o $@
++	$(MOC) $(srcdir)/gdialog.h -o $@
+ 
+ moc_gpage.cpp: $(srcdir)/gpage.h $(mock)
+-	$(MOC) $< -o $@
++	$(MOC) $(srcdir)/gpage.h -o $@
+ 
+ moc_pages.cpp: $(srcdir)/pages.h $(mock)
+-	$(MOC) $< -o $@
++	$(MOC) $(srcdir)/pages.h -o $@
+ 
+ CLEANFILES = $(MOC_OUTPUT) $(mock)
+ 
