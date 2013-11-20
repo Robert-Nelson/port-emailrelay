@@ -1,27 +1,32 @@
+@unexec if cmp -s %D/etc/emailrelay.conf.template %D/etc/emailrelay.conf; then rm -f %D/etc/emailrelay.conf; fi
 etc/emailrelay.conf.template
+@exec if [ ! -f %D/etc/emailrelay.conf ] ; then cp -p %D/%F %B/emailrelay.conf; fi
 libexec/emailrelay/examples/emailrelay-process.sh
 libexec/emailrelay/examples/emailrelay-notify.sh
 libexec/emailrelay/examples/emailrelay-deliver.sh
 libexec/emailrelay/examples/emailrelay-resubmit.sh
 libexec/emailrelay/examples/emailrelay-submit.sh
 libexec/emailrelay/examples/emailrelay-multicast.sh
-libexec/emailrelay/init/emailrelay
 libexec/emailrelay/emailrelay-poke
 libexec/emailrelay/emailrelay-filter-copy
 sbin/emailrelay
 sbin/emailrelay-submit
 sbin/emailrelay-passwd
+%%GUI%%sbin/emailrelay-gui
+%%GUI%%sbin/emailrelay-gui.real
 %%GUI%%share/emailrelay/emailrelay-icon.png
-%%DOCSDIR%%/COPYING
-%%DOCSDIR%%/AUTHORS
-%%DOCSDIR%%/INSTALL
-%%DOCSDIR%%/NEWS
-%%DOCSDIR%%/README
-%%DOCSDIR%%/README.windows
-%%DOCSDIR%%/README.mac
-%%DOCSDIR%%/README.embedded
-%%DOCSDIR%%/README.ossw
-%%DOCSDIR%%/ChangeLog
+%%PORTDOCS%%%%DOCSDIR%%/COPYING
+%%PORTDOCS%%%%DOCSDIR%%/AUTHORS
+%%PORTDOCS%%%%DOCSDIR%%/INSTALL
+%%PORTDOCS%%%%DOCSDIR%%/NEWS
+%%PORTDOCS%%%%DOCSDIR%%/README
+%%PORTDOCS%%%%DOCSDIR%%/README.windows
+%%PORTDOCS%%%%DOCSDIR%%/README.mac
+%%PORTDOCS%%%%DOCSDIR%%/README.embedded
+%%PORTDOCS%%%%DOCSDIR%%/README.ossw
+%%PORTDOCS%%%%DOCSDIR%%/ChangeLog
+%%PORTDOCS%%%%DOCSDIR%%/doxygen/emailrelay-doxygen.css
+%%PORTDOCS%%%%DOCSDIR%%/doxygen/index.html
 %%PORTDOCS%%%%DOCSDIR%%/developer.txt
 %%PORTDOCS%%%%DOCSDIR%%/reference.txt
 %%PORTDOCS%%%%DOCSDIR%%/userguide.txt
@@ -53,8 +58,10 @@ man/man1/emailrelay-filter-copy.1.gz
 man/man1/emailrelay-passwd.1.gz
 man/man1/emailrelay-poke.1.gz
 man/man1/emailrelay-submit.1.gz
+%%PORTDOCS%%@dirrmtry %%DOCSDIR%%/doxygen
+%%PORTDOCS%%@dirrm %%DOCSDIR%%
+@dirrmtry libexec/emailrelay/examples
 @dirrm libexec/emailrelay
-@dirrm share/doc/emailrelay
 @dirrm share/emailrelay
-@exec mkdir -p var/spool/emailrelay
-@dirrm var/spool/emailrelay
+@exec mkdir -p /var/spool/emailrelay
+@unexec rmdir /var/spool/emailrelay >/dev/null 2>&1 || :

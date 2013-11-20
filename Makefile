@@ -1,7 +1,11 @@
+# Created by: Robert Nelson <robertn@the-nelsons.org>
+
+# $FreeBSD$
+
 PORTNAME=		emailrelay
-PORTVERSION=		1.9.0.212
+PORTVERSION=		1.9.0.218
 CATEGORIES=		mail
-MASTER_SITES=		http://gforge.opensource-sw.net/gf/download/frsrelease/33/138/
+MASTER_SITES=		http://gforge.opensource-sw.net/gf/download/frsrelease/33/140/
 
 MAINTAINER=		robertn@the-nelsons.org
 COMMENT=		Simple SMTP proxy and store-and-forward MTA
@@ -9,6 +13,7 @@ COMMENT=		Simple SMTP proxy and store-and-forward MTA
 USES=			pkgconfig
 USE_AUTOTOOLS=		aclocal automake autoconf
 USE_BZIP2=		yes
+USE_RC_SUBR=		emailrelay
 
 HAS_CONFIGURE=		yes
 
@@ -20,7 +25,7 @@ OPTIONS_SUB=		yes
 DOXYGEN_CONFIGURE_WITH=	doxygen
 
 GUI_CONFIGURE_ENABLE=	gui
-GUI_CONFIGURE_ENV=	e_qtmoc="${MOC}"
+GUI_CONFIGURE_ENV=	e_qtmoc="${MOC}" e_spooldir=:"/var/spool/emailrelay"
 
 MAN2HTML_CONFIGURE_WITH=man2html
 MAN2HTML_BUILD_DEPENDS=	man2html:${PORTSDIR}/textproc/man2html
@@ -42,14 +47,7 @@ USE_QT4=		gui
 USE_OPENSSL=		yes
 .endif
 
-post-install:
-	@if [ ! -f ${PREFIX}/etc/emailrealy.conf ]; then \
-		${CP} -p ${STAGEDIR}/${PREFIX}/etc/emailrelay.conf.template ${PREFIX}/etc/emailrelay.conf ; \
-	fi
-
-pre-deinstall:
-	@if cmp -s ${PREFIX}/etc/emailrelay.conf.template ${PREFIX}/etc/emailrelay.conf; then \
-	       	rm -f ${PREFIX}/etc/emailrelay.conf ; \
-	fi
+pre-install:
+	@mkdir -p ${STAGEDIR}/var/spool/emailrelay
 
 .include <bsd.port.mk>

@@ -1,0 +1,69 @@
+#!/bin/sh
+#
+# Copyright (C) 2001-2013 Graeme Walker <graeme_walker@users.sourceforge.net>
+# Copyright (C) 2013 Robert Nelson <robertnelson@users.sourceforge.net>
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# ===
+# 
+# emailrelay
+# 
+# A shell-script wrapper for E-MailRelay for use in the FreeBSD rc.d system.
+#
+# Additional command-line options for the emailrelay daemon are sourced from
+# the file "/usr/local/etc/emailrelay.conf" if it exists. Uncommented lines in this 
+# file have "--" prepended to them and then they are pasted onto the command 
+# line.
+#
+# usage: emailrelay { start | stop | restart | force-reload | status }
+#
+
+# PROVIDE: emailrelay
+# REQUIRE: DAEMON 
+# KEYWORD: shutdown
+
+. /etc/rc.subr
+
+name=emailrelay
+rcvar=emailrelay_enable
+command=/usr/local/sbin/emailrelay
+
+emailrelay_config_file=/usr/local/etc/emailrelay.conf
+
+pidfile=/var/run/emailrelay.pid
+required_files=$config_file
+start_precmd=emailrelay_prestart
+
+load_rc_config $name
+
+: ${emailrelay_enable:=no}
+
+emailrelay_config_options()
+{
+	# echo --options from the config file
+	egrep -v '^#|^gui-|^ *$' | sed 's/^/--/' < $emailrelay_config_file
+}
+
+emailrelay_start_options()
+{
+	# echo start command tail
+	echo --as-server --pid-file $pid_file `emailrelay_config_options`
+}
+
+emailrelay_prestart()
+{
+	rc_flags=`emailrelay_start_options`
+}
+
+run_rc_command "$1"
