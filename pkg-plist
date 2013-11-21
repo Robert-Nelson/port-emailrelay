@@ -1,6 +1,9 @@
 @unexec if cmp -s %D/etc/emailrelay.conf.template %D/etc/emailrelay.conf; then rm -f %D/etc/emailrelay.conf; fi
 etc/emailrelay.conf.template
 @exec if [ ! -f %D/etc/emailrelay.conf ] ; then cp -p %D/%F %B/emailrelay.conf; fi
+@unexec if cmp -s %D/etc/emailrelay.auth.template %D/etc/emailrelay.auth; then rm -f %D/etc/emailrelay.auth; fi
+etc/emailrelay.auth.template
+@exec if [ ! -f %D/etc/emailrelay.auth ] ; then cp -p %D/%F %B/emailrelay.auth; fi
 libexec/emailrelay/examples/emailrelay-process.sh
 libexec/emailrelay/examples/emailrelay-notify.sh
 libexec/emailrelay/examples/emailrelay-deliver.sh
@@ -62,6 +65,6 @@ man/man1/emailrelay-submit.1.gz
 %%PORTDOCS%%@dirrm %%DOCSDIR%%
 @dirrmtry libexec/emailrelay/examples
 @dirrm libexec/emailrelay
-@dirrm share/emailrelay
+%%GUI%%@dirrm share/emailrelay
 @exec mkdir -p /var/spool/emailrelay
 @unexec rmdir /var/spool/emailrelay >/dev/null 2>&1 || :

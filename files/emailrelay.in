@@ -52,13 +52,13 @@ load_rc_config $name
 emailrelay_config_options()
 {
 	# echo --options from the config file
-	egrep -v '^#|^gui-|^ *$' | sed 's/^/--/' < $emailrelay_config_file
+	egrep -v '^#|^gui-|^ *$' < $emailrelay_config_file | sed 's/^/--/'
 }
 
 emailrelay_start_options()
 {
 	# echo start command tail
-	echo --as-server --pid-file $pid_file `emailrelay_config_options`
+	echo --as-server --pid-file $pidfile `emailrelay_config_options`
 }
 
 emailrelay_prestart()

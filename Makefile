@@ -18,7 +18,7 @@ USE_RC_SUBR=		emailrelay
 HAS_CONFIGURE=		yes
 
 OPTIONS_DEFINE=		GUI DOXYGEN OPENSSL MAN2HTML DOCS
-OPTIONS_DEFAULT=	GUI OPENSSL
+OPTIONS_DEFAULT=	GUI OPENSSL DOCS
 
 OPTIONS_SUB=		yes
 
@@ -49,5 +49,6 @@ USE_OPENSSL=		yes
 
 pre-install:
 	@mkdir -p ${STAGEDIR}/var/spool/emailrelay
+	${CP} ${FILESDIR}/emailrelay.auth.template ${STAGEDIR}${PREFIX}/etc
 
 .include <bsd.port.mk>
