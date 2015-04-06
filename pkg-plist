@@ -56,10 +56,9 @@ man/man1/emailrelay-filter-copy.1.gz
 man/man1/emailrelay-passwd.1.gz
 man/man1/emailrelay-poke.1.gz
 man/man1/emailrelay-submit.1.gz
-%%PORTDOCS%%@dirrmtry %%DOCSDIR%%/doxygen
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
-@dirrmtry libexec/emailrelay/examples
-@dirrm libexec/emailrelay
-%%GUI%%@dirrm share/emailrelay
-@exec mkdir -p /var/spool/emailrelay
-@unexec rmdir /var/spool/emailrelay >/dev/null 2>&1 || :
+%%PORTDOCS%%@dir %%DOCSDIR%%/doxygen
+%%PORTDOCS%%@dir %%DOCSDIR%%
+@dir libexec/emailrelay/examples
+@dir libexec/emailrelay
+%%GUI%%@dir share/emailrelay
+@dir /var/spool/emailrelay

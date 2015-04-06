@@ -1,5 +1,4 @@
 # Created by: Robert Nelson <robertn@the-nelsons.org>
-
 # $FreeBSD$
 
 PORTNAME=		emailrelay
@@ -50,11 +49,10 @@ USE_OPENSSL=		yes
 .endif
 
 pre-install:
-	@mkdir -p ${STAGEDIR}/var/spool/emailrelay
+	@{MD} -p ${STAGEDIR}/var/spool/emailrelay
 
 post-install:
 	${MV} ${STAGEDIR}${PREFIX}/etc/emailrelay.auth.template ${STAGEDIR}${PREFIX}/etc/emailrelay.auth.sample
 	${MV} ${STAGEDIR}${PREFIX}/etc/emailrelay.conf.template ${STAGEDIR}${PREFIX}/etc/emailrelay.conf.sample
-
 
 .include <bsd.port.mk>
