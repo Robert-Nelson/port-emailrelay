@@ -49,7 +49,7 @@ USE_OPENSSL=		yes
 .endif
 
 pre-install:
-	@{MD} -p ${STAGEDIR}/var/spool/emailrelay
+	@${MD} -p ${STAGEDIR}/var/spool/emailrelay
 
 post-install:
 	${MV} ${STAGEDIR}${PREFIX}/etc/emailrelay.auth.template ${STAGEDIR}${PREFIX}/etc/emailrelay.auth.sample
