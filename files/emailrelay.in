@@ -30,16 +30,16 @@
 #
 
 # PROVIDE: emailrelay
-# REQUIRE: DAEMON 
+# REQUIRE: LOGIN 
 # KEYWORD: shutdown
 
 . /etc/rc.subr
 
 name=emailrelay
 rcvar=emailrelay_enable
-command=/usr/local/sbin/emailrelay
+command=%%PREFIX%%/sbin/emailrelay
 
-emailrelay_config_file=/usr/local/etc/emailrelay.conf
+emailrelay_config_file=%%PREFIX%%/etc/emailrelay.conf
 
 pidfile=/var/run/emailrelay.pid
 required_files=$config_file

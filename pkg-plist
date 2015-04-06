@@ -1,9 +1,5 @@
-@unexec if cmp -s %D/etc/emailrelay.conf.template %D/etc/emailrelay.conf; then rm -f %D/etc/emailrelay.conf; fi
-etc/emailrelay.conf.template
-@exec if [ ! -f %D/etc/emailrelay.conf ] ; then cp -p %D/%F %B/emailrelay.conf; fi
-@unexec if cmp -s %D/etc/emailrelay.auth.template %D/etc/emailrelay.auth; then rm -f %D/etc/emailrelay.auth; fi
-etc/emailrelay.auth.template
-@exec if [ ! -f %D/etc/emailrelay.auth ] ; then cp -p %D/%F %B/emailrelay.auth; fi
+@sample etc/emailrelay.conf.sample
+@sample etc/emailrelay.auth.sample
 libexec/emailrelay/examples/emailrelay-process.sh
 libexec/emailrelay/examples/emailrelay-notify.sh
 libexec/emailrelay/examples/emailrelay-deliver.sh
@@ -26,7 +22,6 @@ sbin/emailrelay-passwd
 %%PORTDOCS%%%%DOCSDIR%%/README.windows
 %%PORTDOCS%%%%DOCSDIR%%/README.mac
 %%PORTDOCS%%%%DOCSDIR%%/README.embedded
-%%PORTDOCS%%%%DOCSDIR%%/README.ossw
 %%PORTDOCS%%%%DOCSDIR%%/ChangeLog
 %%PORTDOCS%%%%DOCSDIR%%/doxygen/emailrelay-doxygen.css
 %%PORTDOCS%%%%DOCSDIR%%/doxygen/index.html

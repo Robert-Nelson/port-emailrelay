@@ -1,0 +1,17 @@
+--- ./src/gui/Makefile.am.orig	2015-04-05 19:52:16.000000000 -0700
++++ ./src/gui/Makefile.am	2015-04-05 19:53:57.000000000 -0700
+@@ -185,10 +185,10 @@
+ 
+ install-exec-hook:
+ 	@echo "#!/bin/sh" > "$(DESTDIR)$(sbindir)/emailrelay-gui"
+-	@echo DIR_INSTALL=\"$(DESTDIR)/usr\" >> "$(DESTDIR)$(sbindir)/emailrelay-gui"
+-	@echo DIR_SPOOL=\"$(DESTDIR)$(e_spooldir)\" >> "$(DESTDIR)$(sbindir)/emailrelay-gui"
+-	@echo DIR_CONFIG=\"$(DESTDIR)$(e_sysconfdir)\" >> "$(DESTDIR)$(sbindir)/emailrelay-gui"
+-	@echo exec $(DESTDIR)$(sbindir)/emailrelay-gui.real \"$$\@\" >> "$(DESTDIR)$(sbindir)/emailrelay-gui"
++	@echo DIR_INSTALL=\"/usr\" >> "$(DESTDIR)$(sbindir)/emailrelay-gui"
++	@echo DIR_SPOOL=\"$(e_spooldir)\" >> "$(DESTDIR)$(sbindir)/emailrelay-gui"
++	@echo DIR_CONFIG=\"$(e_sysconfdir)\" >> "$(DESTDIR)$(sbindir)/emailrelay-gui"
++	@echo exec $(sbindir)/emailrelay-gui.real \"$$\@\" >> "$(DESTDIR)$(sbindir)/emailrelay-gui"
+ 	@chmod +x "$(DESTDIR)$(sbindir)/emailrelay-gui"
+ 	-if test -d "$(BUNDLE).app" ; then cp -R "$(BUNDLE).app" "$(DESTDIR)$(sbindir)" ; fi
+ 

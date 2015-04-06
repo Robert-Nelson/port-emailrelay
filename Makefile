@@ -3,16 +3,17 @@
 # $FreeBSD$
 
 PORTNAME=		emailrelay
-PORTVERSION=		1.9.0.218
+PORTVERSION=		1.9
 CATEGORIES=		mail
-MASTER_SITES=		http://gforge.opensource-sw.net/gf/download/frsrelease/33/140/
+MASTER_SITES=		SF
+EXTRACT_SUFX=		-src.tar.gz
 
 MAINTAINER=		robertn@the-nelsons.org
 COMMENT=		Simple SMTP proxy and store-and-forward MTA
 
 USES=			pkgconfig
 USE_AUTOTOOLS=		aclocal automake autoconf
-USE_BZIP2=		yes
+AUTOMAKE_ARGS=		--add-missing
 USE_RC_SUBR=		emailrelay
 
 HAS_CONFIGURE=		yes
@@ -23,6 +24,7 @@ OPTIONS_DEFAULT=	GUI OPENSSL DOCS
 OPTIONS_SUB=		yes
 
 DOXYGEN_CONFIGURE_WITH=	doxygen
+DOXYGEN_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
 
 GUI_CONFIGURE_ENABLE=	gui
 GUI_CONFIGURE_ENV=	e_qtmoc="${MOC}" e_spooldir=:"/var/spool/emailrelay"
@@ -49,6 +51,10 @@ USE_OPENSSL=		yes
 
 pre-install:
 	@mkdir -p ${STAGEDIR}/var/spool/emailrelay
-	${CP} ${FILESDIR}/emailrelay.auth.template ${STAGEDIR}${PREFIX}/etc
+
+post-install:
+	${MV} ${STAGEDIR}${PREFIX}/etc/emailrelay.auth.template ${STAGEDIR}${PREFIX}/etc/emailrelay.auth.sample
+	${MV} ${STAGEDIR}${PREFIX}/etc/emailrelay.conf.template ${STAGEDIR}${PREFIX}/etc/emailrelay.conf.sample
+
 
 .include <bsd.port.mk>

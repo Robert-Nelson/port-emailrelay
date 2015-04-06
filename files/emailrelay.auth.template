@@ -1,6 +1,0 @@
-#
-# emailrelay.auth
-#
-# <mechanism> {server|client} <name> <secret>
-#   mechanism = { CRAM-MD5 | LOGIN | APOP | NONE }
-#
