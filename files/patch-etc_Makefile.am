@@ -1,6 +1,6 @@
---- ./etc/Makefile.am.orig	2015-04-05 20:33:19.000000000 -0700
-+++ ./etc/Makefile.am	2015-04-05 20:40:42.000000000 -0700
-@@ -30,25 +30,3 @@
+--- etc/Makefile.am.orig	2013-12-07 22:55:55 UTC
++++ etc/Makefile.am
+@@ -30,25 +30,3 @@ emailrelay: emailrelay.pam
  clean-local:
  	-rm -f emailrelay 2>/dev/null
  
