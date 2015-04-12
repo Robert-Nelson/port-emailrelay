@@ -21,22 +21,20 @@ GNU_CONFIGURE=		yes
 CONFIGURE_ENV=		e_spooldir=${PREFIX}/var/spool/emailrelay
 CONFIGURE_ARGS=		--without-pam
 
-OPTIONS_DEFINE=		DOCS DOXYGEN GUI MAN2HTML OPENSSL
-OPTIONS_DEFAULT=	GUI OPENSSL
+OPTIONS_DEFINE=		DOCS DOXYGEN GUI OPENSSL
+OPTIONS_DEFAULT=	OPENSSL
 
 OPTIONS_SUB=		yes
 
+DOCS_BUILD_DEPENDS=	xmlto:${PORTSDIR}/textproc/xmlto
+
 DOXYGEN_CONFIGURE_WITH=	doxygen
 DOXYGEN_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
-DOXYGEN_DESC=		Build documentation with Doxygen (requires DOCS too)
+DOXYGEN_DESC=		Build documentation with Doxygen
 
 GUI_CONFIGURE_ENABLE=	gui
 GUI_CONFIGURE_ENV=	e_qtmoc="${MOC}"
-GUI_USE=		QT4=gui
-
-MAN2HTML_CONFIGURE_WITH=man2html
-MAN2HTML_BUILD_DEPENDS=	man2html:${PORTSDIR}/textproc/man2html
-MAN2HTML_DESC=		Regenerate HTML man pages (requires DOCS too)
+GUI_USE=		QT4=gui,moc
 
 OPENSSL_CONFIGURE_WITH=	openssl
 OPENSSL_USE=		OPENSSL=yes
